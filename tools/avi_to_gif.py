@@ -8,7 +8,7 @@ AVI = "avi"
 
 parser = argparse.ArgumentParser()
 parser.add_argument("filepath", help="Specify the format to convert to.")
-parser.add_argument("format", help="Specify the format to convert to. Options are: gif, mp4, avi")
+parser.add_argument("format", help="Specify the format to convert to. Options are: avi, gif, mp4")
 arguments = parser.parse_args()
 
 def convertVideo(inFile, targetFormat):
