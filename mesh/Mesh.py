@@ -3,7 +3,7 @@ import sys
 from collections import OrderedDict
 
 sys.path.append(r"D:")
-print 'test'
+
 import numpy as np
 from HUCMS.mesh.Node import Node
 from HUCMS.mesh.Element import Element
@@ -65,7 +65,7 @@ class Mesh:
 
     @classmethod
     def fromOptistruct(self, path):
-        self.partName = path.strip('mesh_').strip('.fem')
+        self.partName = os.path.split(path)[1].strip('mesh_').strip('.fem')
         self.inPath = path
         commentLines = []
         nodeDict = {}
