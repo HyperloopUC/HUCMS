@@ -75,6 +75,9 @@ class Mesh:
         with open(path) as mesh_file:
             meshFileLines = mesh_file.readlines()
             iterLines = iter(meshFileLines)
+            self.hexIds = []
+            self.pentIds = []
+            self.tetIds = []
             for line in iterLines:
                 if line.startswith('$$'):
                     commentLines.append(line)
@@ -121,11 +124,12 @@ class Mesh:
                         elNodes[int(nId)] = nodeDict[int(nId)]
                     if len(elNodes) == 8:
                         elType = 'Hex'
+                        self.hexIds.append(elId)
                     else:
                         elType = None
                     #nodes_list = [nodeDict[int(nid)] for nid in nid_list]
                     elementDict[elId] = Element(elId, elNodes,type=elType)
-                elif line.startswith('CTETRA'):
+                elif line.startswith('CTETRA') or line.startswith('CPENTA'):
                     focusLine = line.split(',')
                     elId = int(focusLine[1])
                     nIdList = focusLine[3:-1]
@@ -133,10 +137,12 @@ class Mesh:
                     elNodes = OrderedDict()
                     for nId in nIdList:
                         elNodes[int(nId)] = nodeDict[int(nId)]
-                    if len(elNodes)==8:
-                        elType='Hex'
+                    if len(elNodes)==6:
+                        elType='Penta'
+                        self.pentIds.append(elId)
                     elif len(elNodes)==4:
                         elType='Tet'
+                        self.tetIds.append(elId)
                     else:
                         elType=None
                     elementDict[elId] = Element(elId, elNodes,type=elType)
@@ -179,16 +185,42 @@ class Mesh:
             for nId, node in self.nodes.iteritems():
                 out_mesh.write('{}, {}, {}, {}\n'.format(node.id, node.x, node.y, node.z))
 
-            out_mesh.write('*ELEMENT, ELSET={}, TYPE=C3D4\n'.format(self.partName))
-
-            for elId, element in self.elements.iteritems():
-                elLine = '{}'.format(element.id)
-
+            if len(self.hexIds)>0:
+                out_mesh.write('*ELEMENT, ELSET={}, TYPE=C3D8\n'.format(self.partName))
+            
+            for elId in self.hexIds:
+                elLine = '{}'.format(elId)
+                element = self.elements[elId]
                 for nId, node in element.nodes.iteritems():
                     #print element.nodes
                     elLine += ', {}'.format(nId)
                 elLine += '\n'
                 out_mesh.write(elLine)
+            
+            if len(self.pentIds)>0:
+                out_mesh.write('*ELEMENT, ELSET={}, TYPE=C3D6\n'.format(self.partName))
+            
+            for elId in self.pentIds:
+                elLine = '{}'.format(elId)
+                element = self.elements[elId]
+                for nId, node in element.nodes.iteritems():
+                    #print element.nodes
+                    elLine += ', {}'.format(nId)
+                elLine += '\n'
+                out_mesh.write(elLine)
+                
+            if len(self.tetIds)>0:
+                out_mesh.write('*ELEMENT, ELSET={}, TYPE=C3D4\n'.format(self.partName))
+            
+            for elId in self.tetIds:
+                elLine = '{}'.format(elId)
+                element = self.elements[elId]
+                for nId, node in element.nodes.iteritems():
+                    #print element.nodes
+                    elLine += ', {}'.format(nId)
+                elLine += '\n'
+                out_mesh.write(elLine)
+            
 
             for setName, set in self.sets.iteritems():
 
