@@ -54,8 +54,10 @@ class MyFirstGUI:
     
     def convertFiles(self):
         for mesh in self.fileList:
+            print 'Processing {}'.format(mesh)
             currMesh = Mesh.fromOptistruct(mesh)
             currMesh.toAbaqus()
+            print 'Finished converting {}'.format(mesh)
     
     def addFile(self):
         files = tkFileDialog.askopenfilenames(initialdir = "/",title = "Select file",filetypes = (("Optistruct Mesh","*.fem"),("All Files","*.*")))

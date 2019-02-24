@@ -90,9 +90,10 @@ class Mesh:
                     line = next(iterLines)
                     line = next(iterLines)
                     if line.startswith('SET'):
-                        firstLine = line.split()
-                        #print firstLine[3].split(',')
-                        ids = [int(id) for id in firstLine[3].strip().split(',') if id != '']
+						if '=' in line:
+							firstLine = line.split()
+							#print firstLine[3].split(',')
+							ids = [int(id) for id in firstLine[3].strip().split(',') if id != '']
 
                     line = next(iterLines)
                     while not line.startswith('$'):
