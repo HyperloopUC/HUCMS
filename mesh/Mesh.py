@@ -3,7 +3,7 @@ import sys
 from collections import OrderedDict
 
 sys.path.append(r"D:")
-print 'test'
+print 'Initializing HUCMS'
 import numpy as np
 from HUCMS.mesh.Node import Node
 from HUCMS.mesh.Element import Element
@@ -123,7 +123,56 @@ class Mesh:
                         elType = 'Hex'
                     else:
                         elType = None
+                    elType='Hex'
                     #nodes_list = [nodeDict[int(nid)] for nid in nid_list]
+                    elementDict[elId] = Element(elId, elNodes,type=elType)
+                elif line.startswith('CQUAD4'):
+                    focusLine = line.split(',')
+                    elId = int(focusLine[1])
+                    nIdList = focusLine[3:-1]
+
+                    elNodes = OrderedDict()
+                    for nId in nIdList:
+                        elNodes[int(nId)] = nodeDict[int(nId)]
+                    if len(elNodes)==8:
+                        elType='Hex'
+                    elif len(elNodes)==4:
+                        elType='Tet'
+                    else:
+                        elType=None
+                    elType='Quad'
+                    elementDict[elId] = Element(elId, elNodes,type=elType)
+                elif line.startswith('CPENTA'):
+                    focusLine = line.split(',')
+                    elId = int(focusLine[1])
+                    nIdList = focusLine[3:-1]
+
+                    elNodes = OrderedDict()
+                    for nId in nIdList:
+                        elNodes[int(nId)] = nodeDict[int(nId)]
+                    if len(elNodes)==8:
+                        elType='Hex'
+                    elif len(elNodes)==4:
+                        elType='Tet'
+                    else:
+                        elType=None
+                    elType='Penta'
+                    elementDict[elId] = Element(elId, elNodes,type=elType)
+                elif line.startswith('CTRIA3'):
+                    focusLine = line.split(',')
+                    elId = int(focusLine[1])
+                    nIdList = focusLine[3:-1]
+
+                    elNodes = OrderedDict()
+                    for nId in nIdList:
+                        elNodes[int(nId)] = nodeDict[int(nId)]
+                    if len(elNodes)==8:
+                        elType='Hex'
+                    elif len(elNodes)==4:
+                        elType='Tet'
+                    else:
+                        elType=None
+                    elType='Tria'
                     elementDict[elId] = Element(elId, elNodes,type=elType)
                 elif line.startswith('CTETRA'):
                     focusLine = line.split(',')
@@ -140,6 +189,7 @@ class Mesh:
                     else:
                         elType=None
                     elementDict[elId] = Element(elId, elNodes,type=elType)
+                    elType='Tet'
                 elif line.startswith('$HMNAME CSURF'):
                     surfElems = {}
                     
@@ -182,13 +232,64 @@ class Mesh:
             out_mesh.write('*ELEMENT, ELSET={}, TYPE=C3D4\n'.format(self.partName))
 
             for elId, element in self.elements.iteritems():
-                elLine = '{}'.format(element.id)
+                if element.type == 'Tet':
+                    elLine = '{}'.format(element.id)
 
-                for nId, node in element.nodes.iteritems():
-                    #print element.nodes
-                    elLine += ', {}'.format(nId)
-                elLine += '\n'
-                out_mesh.write(elLine)
+                    for nId, node in element.nodes.iteritems():
+                        #print element.nodes
+                        elLine += ', {}'.format(nId)
+                    elLine += '\n'
+                    out_mesh.write(elLine)
+            
+            out_mesh.write('*ELEMENT, ELSET={}, TYPE=C3D6\n'.format(self.partName))
+
+            for elId, element in self.elements.iteritems():
+                if element.type == 'Penta':
+                    
+                    elLine = '{}'.format(element.id)
+                    
+                    for nId, node in element.nodes.iteritems():
+                        #print element.nodes
+                        elLine += ', {}'.format(nId)
+                    elLine += '\n'
+                    out_mesh.write(elLine)
+            
+            out_mesh.write('*ELEMENT, ELSET={}, TYPE=C3D8\n'.format(self.partName))
+
+            for elId, element in self.elements.iteritems():
+                if element.type == 'Hex':
+                    
+                    elLine = '{}'.format(element.id)
+                    
+                    for nId, node in element.nodes.iteritems():
+                        #print element.nodes
+                        elLine += ', {}'.format(nId)
+                    elLine += '\n'
+                    out_mesh.write(elLine)
+                
+            out_mesh.write('*ELEMENT, ELSET={}, TYPE=S3\n'.format(self.partName))
+
+            for elId, element in self.elements.iteritems():
+                if element.type == 'Tria':
+                    elLine = '{}'.format(element.id)
+
+                    for nId, node in element.nodes.iteritems():
+                        #print element.nodes
+                        elLine += ', {}'.format(nId)
+                    elLine += '\n'
+                    out_mesh.write(elLine)
+            
+            out_mesh.write('*ELEMENT, ELSET={}, TYPE=S4\n'.format(self.partName))
+
+            for elId, element in self.elements.iteritems():
+                if element.type == 'Quad':
+                    elLine = '{}'.format(element.id)
+
+                    for nId, node in element.nodes.iteritems():
+                        #print element.nodes
+                        elLine += ', {}'.format(nId)
+                    elLine += '\n'
+                    out_mesh.write(elLine)
 
             for setName, set in self.sets.iteritems():
 
