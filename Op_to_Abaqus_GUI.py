@@ -1,4 +1,4 @@
-from HUCMS.mesh.Mesh import Mesh
+from mesh.Mesh import Mesh
 from Tkinter import Tk, Label, Button, Listbox, END, PhotoImage, RIGHT, LEFT, BOTTOM, TOP
 import tkFileDialog
 
