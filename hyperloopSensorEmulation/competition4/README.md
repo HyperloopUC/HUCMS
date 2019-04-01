@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 Here is where we will be storing all our code to simulate the sensor data
 generated in a pod run. All our software will be written in Python for now.
 Reach out to Wayne Stegner or Dival Banerjee in Slack if you have any questions
@@ -10,12 +10,12 @@ We need to be able test the following cases for each sensor:
 - Nominal case
 - Sensor failure
 
-# Why are we doing this?
+## Why are we doing this?
 We don't have an actual tube or track to test on. Without this, we have no data
 for sensors to test the electronics. Thus, we need to emulate the sensor data
 with software in order to test our pod accurately and safely.
 
-## Good programming practices
+# Good programming practices
 In order to maintain organization over several years, we must follow good
 programming habits. Developers at Google and Facebook are good at writing code,
 not because of their intellect, but because of their good communication skills
@@ -45,18 +45,18 @@ writing code.
   branch
 
 
-## Deadlines:
+# Deadlines:
 
-## Tasks:
+# Tasks:
 - Will update soon
-## Sensors:
+# Sensors:
 - 7 Analog pressure sensors
 - 5-40 RTD Thermal sensors
 - 1 Motor controller
 - 1 BMS (CAN Bus)
 - 3 Accelerometers
 - 4 Contrast sensors
-## Helpful links:
+# Helpful links:
 - If you don't know Python or need a refresher, check out this site:
   https://www.pythonforbeginners.com/basics/python-quick-guide
 
