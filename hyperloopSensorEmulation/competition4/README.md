@@ -9,8 +9,8 @@ We need to be able test the following cases for each sensor:
 - Startup checklist
 - Nominal case
 - Sensor failure
-We will generate the sensor data for a run and store that data as a csv and be
-able to send that data to the FPGA
+ - We will generate the sensor data for a run and store that data as a csv and be
+    able to send that data to the FPGA
 
 ## Why are we doing this?
 We don't have an actual tube or track to test on. Without this, we have no data
