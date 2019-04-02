@@ -8,7 +8,6 @@ Our objective is to emulate sensor data to play back to the BeagleBone Black
 We need to be able test the following cases for each sensor:
 - Startup checklist
 - Nominal case
-- Sensor failure
  - We will generate the sensor data for a run and store that data as a csv and be
     able to send that data to the FPGA
 
@@ -40,12 +39,10 @@ writing code.
 - Validate method arguments with if tests
 - Comment your code thoroughly as you write it, not after
 - Don't add comments for obvious things
-
 - Use github effectively(commits, pushing, pulling, branching, merging)
 - Commit your code often
 - Don't edit files that others are editing. If you want to, make a separate
   branch
-
 
 # Deadlines:
 - Will update soon by Tuesday
@@ -85,11 +82,13 @@ writing code.
   - Technical details:
     https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL326.pdf
 - 2 QS30 Diffuse-Mode Laser(Reflective tape sensor)
-  Technical details:
-  https://www.bannerengineering.com/us/en/products/sensors/photoelectric-sensors/qs30-series.html?sort=4#all
+  - Technical details:
+    https://www.bannerengineering.com/us/en/products/sensors/photoelectric-sensors/qs30-series.html?sort=4#all
+  - Use timestamps
 - Optical encoders  OJ5028
   - Part number:  OJ5028
   - Technical datasheet:  https://www.ifm.com/us/en/product/oj5028
+  - Use raw bitsteam
 
 # Helpful links:
 - If you don't know Python or need a refresher, check out this site:
