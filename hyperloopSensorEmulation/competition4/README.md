@@ -99,5 +99,7 @@ writing code.
   - This is a good example of how large teams use Github
 - Competition 4 FDP:
   https://docs.google.com/document/d/1VyZiGVuFcsHgQypDGP2s--6cPAQ8PxP53GrLnEdr3SY/edit?usp=sharing
+- What is CAN BUS(Well explained)
+  - https://www.quora.com/What-is-a-CAN-bus
 
 You can also reach out to me, Wayne or Heath on Slack if you have any questions!
