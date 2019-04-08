@@ -45,9 +45,11 @@ writing code.
   branch
 
 # Deadlines:
-- Will update soon by Tuesday
+- Complete Task 1 by Friday
+- Complete Task 2 by Next Monday
 # Tasks:
-- Will update soon by Tuesday
+- 1.Complete communication protocol classes for navigation critical Sensors
+- 2.Complete Sensor class
 # Sensors:
 - 5 Pneumatic Pressure Sensors M7139-05KPN-5
   - Part number: M7139-05KPN-5
