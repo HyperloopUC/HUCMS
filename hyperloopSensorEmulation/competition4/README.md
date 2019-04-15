@@ -62,6 +62,7 @@ writing code.
 
 - 1 Emsiso emDrive 500 Motor controller
   - CAN L, CAN H
+  - Uses sin/cos motor feedback
   - Technical details: https://www.emdrive-mobility.com/emdrive-500
 - 1 Orion BMS 2 36 Cell Configuration (CAN Bus)
   - Technical details:
