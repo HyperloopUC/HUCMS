@@ -11,11 +11,14 @@ from lines.SerialClock import SerialClock
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-#For reference: https://en.wikipedia.org/wiki/Synchronous_Serial_Interface
 class i2c:
     def __init__(self):
-        self.sda = SerialClock()
-        self.scl = SerialData()
+        self.pin = 1
+        self.sda = SerialData()
+        self.scl = SerialClock()
+        self.speed = 100 #Bitrate
+        self.address = '1100000'
+        
 
     def read(self):
         #will do in a bit
@@ -23,12 +26,11 @@ class i2c:
     def write(self, inputMessege):
         self.message = inputMessege
 
-    def setStartCondition(self, startCondition):
-        self.startCondition = startCondition
+    def setStartCondition(self):
+        self.sda.setLow
 
-    def setEndCondition(self, endCondition):
-        self.endCondition = endCondition
+    def setEndCondition(self):
+        self.sda.setHigh
 
     def setAddress(self,sevenBitAddress):
         self.address = sevenBitAddress
-        
