@@ -16,15 +16,17 @@ class i2c:
         self.pin = 1
         self.sda = SerialData()
         self.scl = SerialClock()
-        self.speed = 100 #Bitrate
+        self.clockSpeed = 100 #Bitrate
         self.address = '1100000'
-        
+        self.sda.setHigh
 
     def read(self):
         #will do in a bit
 
+    #inputMessage is a string of bites
     def write(self, inputMessege):
         self.message = inputMessege
+        sizeOf = len(inputMessage)
 
     def setStartCondition(self):
         self.sda.setLow
@@ -34,3 +36,8 @@ class i2c:
 
     def setAddress(self,sevenBitAddress):
         self.address = sevenBitAddress
+
+    def setClockSpeed(self, speed):
+        self.clockSpeed = speed
+
+    def beginTransmission(self):
