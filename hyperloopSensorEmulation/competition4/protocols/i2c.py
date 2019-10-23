@@ -1,3 +1,4 @@
+import numpy as np
 import csv
 import logging
 import math
@@ -18,18 +19,11 @@ class i2c:
         self.scl = SerialClock()
         self.clockSpeed = 100 #Bitrate
         self.address = '1100000'
-        self.sda.setHigh
+        self.sda.setHigh()
 
-    def read(self):
-        #will do in a bit
-
-    #inputMessage is a string of bites
-    def write(self, inputMessege):
-        self.message = inputMessege
-        sizeOf = len(inputMessage)
 
     def setStartCondition(self):
-        self.sda.setLow
+        self.sda.setLow()
 
     def setEndCondition(self):
         self.sda.setHigh
@@ -40,4 +34,16 @@ class i2c:
     def setClockSpeed(self, speed):
         self.clockSpeed = speed
 
+    def write(self, inputMessage):
+        self.message = inputMessege
+        sizeOf = len(inputMessage)
+
+    def read(self):
+        self.write(self.sda.setLow())
+
     def beginTransmission(self):
+        listOutput[2][] = 0
+        return listOutput
+
+
+    
